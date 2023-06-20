@@ -2,14 +2,18 @@ import React,{useState} from "react";
 import "./style.css";
 
 export default function App() {
+  //to get value 
   const[value,setValue] = useState()
+  //to store value
   const [todo, setTodo] = useState([])
-  const [todoEditing, setTodoEditing] = useState(null)
+  //taking two usestate for updete todo/edit todo
+  const [todoEditing, setTodoEditing] = useState(null)//to use tarnary oerator to set button
   const[editingText, setEditingText] = useState("")
 
   function handleinputchange(e){
     setValue(e.target.value)
   }
+  //for add todolist item
   function handleinput(){
     if(value != '' && todo !== ''){
       setTodo([...todo,  value]);
@@ -18,12 +22,13 @@ export default function App() {
 
     }
   };
+  //for delete
   function handleDelete(index){
     let new1 = [...todo]
     new1.splice(index , 1)
     setTodo([...new1])
   }
- 
+ //to edit todolist 
   function editTodo(index){
     const updatedTodos = [...todo];
     updatedTodos[index] = editingText;
@@ -33,11 +38,7 @@ export default function App() {
 
   }
   
-//   const markTodo = index => {
-//     const newTodos = [...todo];
-//     newTodos[index].isDone = true;
-//     setTodo(newTodos);
-// };
+
 
   return (
     <div>
@@ -56,9 +57,9 @@ export default function App() {
             type="text"
             onChange={(e) => setEditingText(e.target.value)} 
             value={editingText}
-            />) : ( <p style={{ textDecoration: todo.isDone ? "line-through" : "" }}> {todos} </p>)}
+            />) : ( <p> {todos} </p>)}
       
-      <button onClick={() => markTodo(index)}>✓</button>
+      {/* <button onClick={() => markTodo(index)}>✓</button> */}
           
            <button onClick={() => handleDelete(index)}> Delete </button>
 
